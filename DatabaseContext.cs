@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Inventory_Api.Model;
+using Inventory_Api.Model.cs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -45,7 +46,7 @@ namespace inventory_api
       modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
     }
     public DbSet<StoreItem> Item { get; set; }
-
+    public DbSet<Locations> Location { get; set; }
 
   }
 }

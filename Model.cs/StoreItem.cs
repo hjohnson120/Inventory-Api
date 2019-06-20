@@ -1,5 +1,6 @@
 
 using System;
+using Inventory_Api.Model.cs;
 
 namespace Inventory_Api.Model
 {
@@ -14,6 +15,10 @@ namespace Inventory_Api.Model
     public int NumberInStock { get; set; }
     public int Price { get; set; }
     public DateTime DatePurchased { get; set; }
+
+
+    public int? LocationId { get; set; }
+    public Locations Location { get; set; }
 
   }
 }
