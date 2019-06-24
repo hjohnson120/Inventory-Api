@@ -19,11 +19,10 @@ namespace Inventory_Api.Controllers
     public ActionResult<List<Locations>> Get()
     {
       var db = new DatabaseContext();
-      var data = db.Location.Include(i => i.Item).FirstOrDefault();
-      return data.Item;
-      // var rv = db.Location;
-      // return rv.ToList();
+      var rv = db.Location;
+      return rv.ToList();
     }
+
 
 
     [HttpPost]

@@ -3,6 +3,7 @@ using System.Linq;
 using inventory_api;
 using Inventory_Api.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Api.Controllers
 {
@@ -16,8 +17,8 @@ namespace Inventory_Api.Controllers
     public ActionResult<List<StoreItem>> Get()
     {
       var db = new DatabaseContext();
-      var rv = db.Item;
-      return rv.ToList();
+      var data = db.Item.Include(i => i.Location);
+      return data.ToList();
     }
 
 
@@ -35,7 +36,7 @@ namespace Inventory_Api.Controllers
     public ActionResult<StoreItem> GetOneItem(int Id)
     {
       var db = new DatabaseContext();
-      var getOne = db.Item.FirstOrDefault(f => f.Id == Id);
+      var getOne = db.Item.Include(i => i.Location).FirstOrDefault(f => f.Id == Id);
       return getOne;
     }
 
@@ -46,6 +47,7 @@ namespace Inventory_Api.Controllers
       var db = new DatabaseContext();
       var updateOne = db.Item.FirstOrDefault(f => f.Id == Id);
       item.Price = item.Price;
+      item.LocationId = item.LocationId;
       db.SaveChanges();
       return item;
     }
